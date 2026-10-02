@@ -1,0 +1,65 @@
+@use 'foundation' as ui;
+
+:host {
+  display: block;
+}
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  padding: 58px 0 35px;
+}
+h1 {
+  margin: 0;
+  font-family: ui.$font-family-page-heading;
+  font-size: ui.$font-size-page-heading;
+  font-weight: ui.$font-weight-regular;
+  letter-spacing: -1.7px;
+  line-height: 1.12;
+}
+.file-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  padding-bottom: 3px;
+}
+.file-actions .button span {
+  font-size: ui.$font-size-action-icon;
+  font-weight: ui.$font-weight-regular;
+}
+
+@include ui.below(ui.$compact-width) {
+  .intro {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 35px;
+  }
+}
+
+.import-icon {
+  display: inline-block;
+  width: 14px;
+  text-align: center;
+}
+
+.import-icon.is-loading {
+  height: 14px;
+  border: 1.5px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: motion-spin 700ms linear infinite;
+}
+
+@keyframes motion-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@include ui.reduced-motion {
+  .import-icon.is-loading {
+    animation: none;
+    border-right-color: currentColor;
+  }
+}

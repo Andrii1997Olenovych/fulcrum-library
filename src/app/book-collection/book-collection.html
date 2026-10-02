@@ -1,0 +1,57 @@
+<section class="collection">
+  <div class="collection-heading">
+    <div class="heading-label">
+      <h2>All books</h2>
+      <span class="count">{{ total() }}</span>
+    </div>
+    <button
+      #addButton
+      class="button button--primary"
+      type="button"
+      [disabled]="disabled()"
+      (click)="addRequested.emit()"
+    >
+      <span>＋</span> Add a book
+    </button>
+  </div>
+
+  <div class="toolbar">
+    <div class="search">
+      <label class="visually-hidden" for="book-search">Search by title</label>
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+        <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5" />
+        <path d="m13 13 4 4" stroke="currentColor" stroke-width="1.5" />
+      </svg>
+      <input
+        #searchInput
+        id="book-search"
+        type="search"
+        placeholder="Search by title…"
+        [value]="query()"
+        [disabled]="disabled()"
+        (input)="queryChanged.emit(searchInput.value)"
+      />
+    </div>
+    <label class="sort-option">
+      <input
+        #sortInput
+        type="checkbox"
+        [checked]="sortByAuthor()"
+        [disabled]="disabled()"
+        (change)="sortChanged.emit(sortInput.checked)"
+      />
+      Sort by author, then title
+    </label>
+  </div>
+
+  <app-book-list
+    [books]="books()"
+    [total]="total()"
+    [editingId]="editingId()"
+    [disabled]="disabled()"
+    (editRequested)="editRequested.emit($event)"
+    (removeRequested)="removeRequested.emit($event)"
+    (clearRequested)="clearRequested.emit()"
+  />
+  <div class="collection-footer">{{ books().length }} of {{ total() }} books</div>
+</section>

@@ -1,0 +1,12 @@
+<label [for]="inputId()">{{ label() }}</label>
+<textarea
+  #textareaElement
+  [id]="inputId()"
+  rows="1"
+  [formControl]="control()"
+  [required]="required()"
+  [class.is-invalid]="!!error()"
+></textarea>
+@if (error(); as message) {
+  <p class="field-error" animate.enter="motion-error-enter">{{ message }}</p>
+}

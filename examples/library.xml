@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+  <book>
+    <title>The Ugly Duckling</title>
+    <author>Andersen</author>
+    <pages>32</pages>
+  </book>
+  <book>
+    <title>The Green Mile</title>
+    <author>King</author>
+    <pages>432</pages>
+  </book>
+  <book>
+    <title>The Little Mermaid</title>
+    <author>Andersen</author>
+    <pages>48</pages>
+  </book>
+</library>

@@ -1,0 +1,52 @@
+@use 'foundation' as ui;
+
+:root {
+  font-family: ui.$font-family-body;
+  color: ui.$text-default;
+  background: ui.$surface-page;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  --accent: #{ui.$accent};
+  --line: #{ui.$border-default};
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+}
+button,
+input,
+textarea {
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+input:not([type='checkbox']):not([type='file']),
+textarea {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  color: ui.$text-default;
+  border: 1px solid ui.$border-field;
+  border-radius: 6px;
+  background: ui.$surface-default;
+}
+input::placeholder {
+  color: ui.$text-placeholder;
+}
+input.is-invalid,
+textarea.is-invalid {
+  border-color: ui.$border-field-invalid;
+}
+:focus-visible {
+  outline: 3px solid ui.$focus-outline;
+  outline-offset: 3px;
+}

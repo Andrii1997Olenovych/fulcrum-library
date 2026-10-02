@@ -1,0 +1,102 @@
+@use 'foundation' as ui;
+
+:host {
+  display: block;
+}
+.table-scroll {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: ui.$font-size-content;
+}
+th {
+  padding: 12px 25px;
+  border-top: 1px solid var(--line);
+  background: ui.$surface-table-heading;
+  color: ui.$text-table-heading;
+  font-size: ui.$font-size-table-heading;
+  font-weight: ui.$font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.actions-heading {
+  position: relative;
+}
+td {
+  padding: 19px 25px;
+  border-top: 1px solid ui.$border-row;
+  line-height: 1.6;
+  color: ui.$text-table-body;
+  overflow-wrap: anywhere;
+}
+.book-title {
+  color: ui.$text-book-title;
+  font-weight: ui.$font-weight-semibold;
+  min-width: 180px;
+  max-width: 360px;
+}
+.pages {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.row-actions {
+  text-align: right;
+  white-space: nowrap;
+}
+.text-button {
+  background: none;
+  border: 0;
+  color: ui.$text-action;
+  font-size: ui.$font-size-control-small;
+  padding: 6px 8px;
+}
+.text-button:hover {
+  text-decoration: underline;
+}
+.text-button--remove {
+  color: ui.$text-action-danger;
+}
+.empty-state {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  padding: 52px 24px 60px;
+  border-top: 1px solid var(--line);
+}
+.empty-state svg {
+  color: ui.$icon-empty;
+  margin-bottom: 21px;
+}
+h3 {
+  margin: 0 0 9px;
+  font-family: ui.$font-family-empty-heading;
+  font-size: ui.$font-size-empty-heading;
+  font-weight: ui.$font-weight-regular;
+}
+
+@include ui.below(ui.$compact-width) {
+  th,
+  td {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+.book-row > td {
+  transition: background-color var(--motion-standard) ease;
+}
+
+@media (hover: hover) {
+  .book-row:hover > td {
+    background-color: ui.$surface-row-hover;
+  }
+}
+
+.book-row.is-editing > td {
+  background-color: ui.$surface-row-editing;
+}

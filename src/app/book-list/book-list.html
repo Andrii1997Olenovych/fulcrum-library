@@ -1,0 +1,76 @@
+@if (books().length) {
+  <div class="table-scroll" tabindex="0">
+    <table>
+      <caption class="visually-hidden">
+        Books in your library
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Author</th>
+          <th scope="col" class="pages">Pages</th>
+          <th scope="col" class="actions-heading"><span class="visually-hidden">Actions</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (book of books(); track book.id) {
+          <tr
+            class="book-row"
+            [class.is-editing]="editingId() === book.id"
+            animate.enter="motion-row-enter"
+          >
+            <td class="book-title">{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td class="pages">{{ book.pages }}</td>
+            <td class="row-actions">
+              <button
+                class="text-button"
+                type="button"
+                [disabled]="disabled()"
+                (click)="editRequested.emit(book)"
+              >
+                Edit
+              </button>
+              <button
+                class="text-button text-button--remove"
+                type="button"
+                [disabled]="disabled()"
+                (click)="removeRequested.emit(book)"
+              >
+                Remove
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+} @else {
+  <div class="empty-state" animate.enter="motion-feedback-enter">
+    <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+      <path
+        d="M9 12c7-2 12-1 17 3 5-4 10-5 17-3v28c-7-2-12-1-17 3-5-4-10-5-17-3V12Z"
+        stroke="currentColor"
+        stroke-width="1.5"
+      />
+      <path
+        d="M26 15v28M15 20c3 0 5 0 7 2m-7 5c3 0 5 0 7 2m8-7c2-2 4-2 7-2m-7 9c2-2 4-2 7-2"
+        stroke="currentColor"
+        stroke-width="1.5"
+      />
+    </svg>
+    @if (total()) {
+      <h3>No matching books</h3>
+      <button
+        class="button button--subtle"
+        type="button"
+        [disabled]="disabled()"
+        (click)="clearRequested.emit()"
+      >
+        Clear search
+      </button>
+    } @else {
+      <h3>No books yet</h3>
+    }
+  </div>
+}

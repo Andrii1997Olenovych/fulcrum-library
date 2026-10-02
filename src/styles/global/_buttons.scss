@@ -1,0 +1,36 @@
+@use 'foundation' as ui;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 16px;
+  border: 1px solid ui.$border-button;
+  border-radius: 6px;
+  color: ui.$text-button;
+  background: ui.$surface-default;
+  font-size: ui.$font-size-content;
+  font-weight: ui.$font-weight-semibold;
+  line-height: 1.4;
+
+  &:hover:not(:disabled) {
+    background: ui.$surface-button-hover;
+  }
+
+  &--primary {
+    background: var(--accent);
+    color: ui.$text-on-accent;
+    border-color: var(--accent);
+
+    &:hover:not(:disabled) {
+      background: ui.$accent-hover;
+    }
+  }
+
+  &--subtle {
+    background: transparent;
+    border-color: transparent;
+  }
+}

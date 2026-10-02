@@ -1,0 +1,14 @@
+<div>
+  @if (state(); as feedback) {
+    @if (feedback.kind === 'success') {
+      <p class="notice" animate.enter="motion-feedback-enter">{{ feedback.message }}</p>
+    }
+  }
+</div>
+@if (state(); as feedback) {
+  @if (feedback.kind === 'error') {
+    <p class="error-message" animate.enter="motion-feedback-enter">
+      {{ feedback.message }}
+    </p>
+  }
+}

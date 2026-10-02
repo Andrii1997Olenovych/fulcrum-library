@@ -1,0 +1,97 @@
+@use 'foundation' as ui;
+
+:host {
+  display: block;
+}
+
+.form-panel {
+  padding: 1.5rem;
+  border: 1px solid ui.$border-form;
+  border-radius: 12px;
+  background: ui.$surface-default;
+}
+
+.form-heading {
+  margin-bottom: 1.25rem;
+}
+
+h2 {
+  margin: 0 0 0.35rem;
+  color: ui.$text-form-heading;
+  font-size: ui.$font-size-form-heading;
+  line-height: 1.4;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem 1.25rem;
+}
+
+.field {
+  @include ui.field-stack;
+}
+
+.field--pages {
+  max-width: 12rem;
+}
+
+label {
+  @include ui.field-label;
+}
+
+.field-error {
+  @include ui.field-error;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+}
+
+@include ui.below(ui.$form-width) {
+  .form-panel {
+    padding: 1.15rem;
+  }
+
+  .fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.form-reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  margin-bottom: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition:
+    grid-template-rows var(--motion-standard) var(--motion-ease),
+    margin-bottom var(--motion-standard) var(--motion-ease),
+    opacity var(--motion-fast) ease,
+    transform var(--motion-standard) var(--motion-ease),
+    visibility 0s var(--motion-standard);
+}
+
+.form-reveal.is-open {
+  grid-template-rows: 1fr;
+  margin-bottom: 24px;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.form-reveal-content {
+  min-height: 0;
+  overflow: hidden;
+}
+
+@include ui.reduced-motion {
+  .form-reveal {
+    transform: none !important;
+  }
+}

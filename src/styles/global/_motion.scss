@@ -1,0 +1,102 @@
+@use 'foundation' as ui;
+
+:root {
+  --motion-fast: 140ms;
+  --motion-standard: 240ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.button,
+.text-button {
+  transition:
+    background-color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease,
+    opacity var(--motion-fast) ease,
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+.text-button {
+  border-radius: 4px;
+}
+
+@media (hover: hover) {
+  .button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px ui.$shadow-button-hover;
+  }
+
+  .button--subtle:hover:not(:disabled) {
+    box-shadow: none;
+  }
+
+  .text-button:hover:not(:disabled) {
+    background-color: ui.$surface-text-button-hover;
+  }
+}
+
+.button:active:not(:disabled),
+.text-button:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
+}
+
+input:not([type='checkbox']):not([type='file']),
+textarea {
+  transition:
+    border-color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease,
+    background-color var(--motion-fast) ease;
+}
+
+:is(input, textarea):focus-visible {
+  box-shadow: 0 0 0 4px ui.$focus-halo;
+}
+
+.motion-row-enter,
+.motion-error-enter {
+  animation: motion-fade var(--motion-fast) ease-out;
+}
+
+.motion-feedback-enter {
+  animation: motion-rise var(--motion-standard) var(--motion-ease);
+}
+
+@keyframes motion-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes motion-rise {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@include ui.reduced-motion {
+  :root {
+    --motion-fast: 0ms;
+    --motion-standard: 0ms;
+  }
+
+  .button,
+  .text-button {
+    transform: none !important;
+  }
+
+  .motion-row-enter,
+  .motion-error-enter,
+  .motion-feedback-enter {
+    animation: none;
+  }
+}

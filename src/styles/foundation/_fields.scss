@@ -1,0 +1,22 @@
+@use 'colors';
+@use 'typography';
+
+@mixin field-stack {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+@mixin field-label {
+  color: colors.$text-field-label;
+  font-size: typography.$font-size-field-label;
+  font-weight: typography.$font-weight-semibold;
+}
+
+@mixin field-error {
+  margin: 0;
+  color: colors.$text-field-error;
+  font-size: typography.$font-size-field-error;
+  line-height: 1.45;
+}

@@ -1,0 +1,15 @@
+@use 'foundation' as ui;
+
+:host {
+  @include ui.field-stack;
+}
+label {
+  @include ui.field-label;
+}
+textarea {
+  min-height: 42px;
+  resize: vertical;
+}
+.field-error {
+  @include ui.field-error;
+}

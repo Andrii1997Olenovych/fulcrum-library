@@ -1,0 +1,59 @@
+<div class="form-reveal" [class.is-open]="editor().open" [inert]="!editor().open">
+  <div class="form-reveal-content">
+    <form class="form-panel" [formGroup]="form" (ngSubmit)="save()" novalidate>
+      <div class="form-heading">
+        <h2>{{ editor().book ? 'Edit book' : 'Add a book' }}</h2>
+      </div>
+
+      <div class="fields">
+        <app-text-field
+          #titleField
+          inputId="book-title"
+          label="Title"
+          [control]="form.controls.title"
+          [error]="error('title')"
+          [required]="true"
+        />
+        <app-text-field
+          inputId="book-author"
+          label="Author"
+          [control]="form.controls.author"
+          [error]="error('author')"
+          [required]="true"
+        />
+
+        <div class="field field--pages">
+          <label for="book-pages">Pages</label>
+          <input
+            id="book-pages"
+            type="number"
+            formControlName="pages"
+            required
+            min="1"
+            step="1"
+            [class.is-invalid]="!!error('pages')"
+          />
+          @if (error('pages'); as message) {
+            <p animate.enter="motion-error-enter" class="field-error">
+              {{ message }}
+            </p>
+          }
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="button button--primary" type="submit" [disabled]="disabled()">
+          {{ editor().book ? 'Save changes' : 'Add book' }}
+        </button>
+        <button
+          class="button button--subtle"
+          type="button"
+          [disabled]="disabled()"
+          (click)="cancelled.emit()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

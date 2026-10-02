@@ -1,0 +1,29 @@
+<app-library-shell>
+  <app-library-header
+    [importing]="isImporting()"
+    [empty]="library.books().length === 0"
+    (fileSelected)="importFile($event)"
+    (exportRequested)="exportBooks()"
+  />
+  <app-library-feedback [state]="feedback()" />
+  <app-book-form
+    [editor]="editor()"
+    [disabled]="isImporting()"
+    (saved)="saveBook($event)"
+    (cancelled)="cancelEditing()"
+  />
+  <app-book-collection
+    [books]="visibleBooks()"
+    [total]="library.books().length"
+    [query]="query()"
+    [sortByAuthor]="sortByAuthor()"
+    [editingId]="editor().open ? (editor().book?.id ?? null) : null"
+    [disabled]="isImporting()"
+    (addRequested)="startAdding()"
+    (editRequested)="startEditing($event)"
+    (removeRequested)="removeBook($event)"
+    (clearRequested)="clearSearch()"
+    (queryChanged)="query.set($event)"
+    (sortChanged)="sortByAuthor.set($event)"
+  />
+</app-library-shell>
